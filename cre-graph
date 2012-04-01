@@ -1,0 +1,42 @@
+#!/usr/bin/perl
+use strict;
+use diagnostics;
+use 5.010;
+use autodie;
+use utf8;
+use WWW::Mechanize;
+my $url = 'http://cre.fm/archiv';
+
+my $mech = WWW::Mechanize->new();
+$mech->agent_alias( 'Linux Mozilla' );
+$mech->get($url);
+
+open my $dot_fh, '>', 'dot';
+say $dot_fh "digraph G {\n";
+
+my $c = 0;
+for my $ep_linkO ($mech->find_all_links(url_regex => qr/cre\d{3}$/)) {
+	my $ep_url = $ep_linkO->url();
+	my $ep_text = $ep_linkO->text();
+	say $ep_url;
+	$ep_text =~ /(?<ep>CRE\d{3})/;
+	my $ep = $+{ep};
+	last if $ep eq 'CRE001';
+	$mech->get($ep_url);
+	my $reference_count = 0;
+	for ($mech->find_all_links(url_regex => qr/cre\d{3}(.html|)$/)) {
+#		last;
+		my $side_url = $_->url();
+		next if $side_url eq $ep_url;
+		my $text = $_->text() or next;
+		last if $text eq "Tweet";
+		$text =~ /(?<sub_ep>CRE\d{3})/;
+		say "\t $text";
+		say $dot_fh "\"$ep_text\" -> \"$text\"";
+		$reference_count++;
+	}
+#	say $dot_fh "$+{ep} [label=\"$ep_text\"]" if $reference_count;
+	$c++;
+	last if $c == 10;
+}
+say $dot_fh '}';
