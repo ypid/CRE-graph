@@ -1,4 +1,4 @@
-all: spider render
+all: render
 
 dot:
 	./spider
@@ -10,7 +10,7 @@ CRE-Graph.png: dot
 
 CRE-Graph.svg: dot
 	dot -Tsvg -o CRE-Graph.svg dot -Gcharset=latin1
-## The svg file created with this will be damaged
+## The svg file will be damaged. I can't tell why ...
 
 CRE-Graph.pdf: dot
 	dot -Tpdf -o CRE-Graph.pdf dot -Gcharset=latin1
