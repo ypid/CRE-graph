@@ -1,42 +1,41 @@
 #!/usr/bin/perl
 use strict;
-use diagnostics;
-#use 5.010;
-use feature qw(say);
-use autodie;
 #use utf8;
-use WWW::Mechanize;
+use diagnostics;
+use feature qw(say);
+use LWP::Simple qw(get);
+use XML::RSS::Parser;
+use FileHandle;
+use URI::Find;
 
-my $url = 'http://cre.fm/archiv';
-my $mech = WWW::Mechanize->new();
-$mech->get($url);
+my $xml = get("http://cre.fm/feed");
 
+my $p = XML::RSS::Parser->new;
+#my $fh = FileHandle->new('feed.xml');my $feed = $p->parse_file($fh);
+my $feed = $p->parse_string($xml);
+
+my @linked_eps;
+my $finder = URI::Find->new(sub {
+	if ($_[0] =~ /(cre\d{3})(.html|)$/) {
+		push @linked_eps, "\U$1";
+	}
+});
 open my $dot_fh, '>', 'dot';
 say $dot_fh "digraph G {\n\toverlap = false\n";
 
-my $c = 0;
-for my $ep_linkO ($mech->find_all_links(url_regex => qr/cre\d{3}$/)) {
-	my $ep_text = $ep_linkO->text();
-	last if $ep_text =~ /^CRE001/;
-	$ep_text =~ s/Chaosradio Express (\d{3}):/CRE$1/;  ## This is nessesary, because a few non-uniform titles
-	my $ep_url = $ep_linkO->url();
-	$mech->get($ep_url);
-	my @ref_eps;	## temp array for all references. Only for printing the items after the parent item and count them
-	for ($mech->find_all_links(url_regex => qr/cre\d{3}(.html|)$/)) {
-		my $side_url = $_->url();
-		next if $side_url eq $ep_url;
-		my $text = $_->text() or next;
-		last if $text eq "Tweet";
-		$text =~ s/Chaosradio Express (\d{3}):/CRE$1/;	## This is nessesary, because a few non-uniform titles
-		push @ref_eps, $text;
-		say $dot_fh "\"$ep_text\" -> \"$text\";";
-	}
-	if (@ref_eps) {
-		say "$ep_text: " . @ref_eps;
-		print map "\t$_\n", @ref_eps;
-	}
-#	$c++;
-	last if $c == 10;
+my $feed_title = $feed->query('/channel/title')->text_content;
+my $count = $feed->item_count;
+for my $it ($feed->query('//item') ) { 
+	my $title = $it->query('title')->text_content;
+	my $comment_number = $it->query('slash:comments')->text_content;
+	my $link = $it->query('link')->text_content;
+	say "$title\t\tKommentare: $comment_number\t\tLink: $link";
+	say "Erstellungsdatum: " . $it->query('pubDate')->text_content;
+	my $content = $it->query('content:encoded')->text_content;
+	$finder->find(\$content);
+	print $dot_fh map { "\"$title\" -> \"$_\";\n" } @linked_eps if @linked_eps;
+	say "Verweise auf andere Episoden: " . @linked_eps;
+	print map { "\t$_\n" } @linked_eps;
+	undef @linked_eps;
 }
 say $dot_fh '}';
-
