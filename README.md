@@ -7,9 +7,14 @@ After this the program dot can do it's job and render some nice graphs.
 
 Call make to generate a graph from the current data.
 
+Currently I am working on an implementation using the XML podcast feed.
+https://github.com/ypid/CRE-graph/tree/using-rssfeed
+
 # Resoult
 * http://github.com/ypid/CRE-graph/raw/master/CRE-Graph.pdf
 * http://github.com/ypid/CRE-graph/raw/master/CRE-Graph.png
+* A small cutting and a short introduction is on my blog (in German)
+	http://ypid.wordpress.com/2012/04/02/welche-cre-folgen-beziehen-sich-auf-andere/
 
 # Dependencies
 
