@@ -1,17 +1,17 @@
 #!/usr/bin/perl
 use strict;
-#use utf8;
+use utf8;
 use diagnostics;
 use feature qw(say);
 use LWP::Simple qw(get);
-use XML::RSS::Parser;
-use FileHandle;
+use XML::RSS::Parser qw(parse_string parse_file);
 use URI::Find;
+use Unicode::String;
 
 my $xml = get("http://cre.fm/feed");
 
 my $p = XML::RSS::Parser->new;
-#my $fh = FileHandle->new('feed.xml');my $feed = $p->parse_file($fh);
+#use FileHandle;my $fh = FileHandle->new('feed.xml');my $feed = $p->parse_file($fh);
 my $feed = $p->parse_string($xml);
 
 my(@linked_eps,%Eps);
@@ -37,13 +37,14 @@ for my $it ($feed->query('//item') ) {
 	my $title = $it->query('title')->text_content;
 	my $comment_number = $it->query('slash:comments')->text_content;
 	my $link = $it->query('link')->text_content;
-	say "$title\t\tKommentare: $comment_number\t\tLink: $link";
-	say "Erstellungsdatum: " . $it->query('pubDate')->text_content;
 	my $content = $it->query('content:encoded')->text_content;
 	$finder->find(\$content);
 	print $dot_fh map { "\"$title\" -> \"$_\";\n" } @linked_eps if @linked_eps;
 	say "Verweise auf andere Episoden: " . @linked_eps;
-	print map { "\t$_\n" } @linked_eps;
+	print map { "\t" . Unicode::String::utf8($_)->utf8() . "\n" } @linked_eps;
+	$title = Unicode::String::utf8($title)->utf8();
+	say "$title\t\tKommentare: $comment_number\t\tLink: $link";
+	say "Erstellungsdatum: " . $it->query('pubDate')->text_content;
 	undef @linked_eps;
 }
 say $dot_fh '}';
