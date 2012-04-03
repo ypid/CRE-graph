@@ -33,7 +33,7 @@ for my $ep_linkO ($mech->find_all_links(url_regex => qr/cre\d{3}$/)) {
 	}
 	if (@ref_eps) {
 		say "$ep_text: " . @ref_eps;
-		say "\t$_" for @ref_eps;
+		print map "\t$_\n", @ref_eps;
 	}
 #	$c++;
 	last if $c == 10;
