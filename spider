@@ -14,10 +14,12 @@ my $p = XML::RSS::Parser->new;
 #my $fh = FileHandle->new('feed.xml');my $feed = $p->parse_file($fh);
 my $feed = $p->parse_string($xml);
 
-my @linked_eps;
+my(@linked_eps,%Eps);
 my $finder = URI::Find->new(sub {
-	if ($_[0] =~ /(cre\d{3})(.html|)$/) {
-		push @linked_eps, "\U$1";
+	if ($_[0] =~ /(cre\d{3})(?:.html|)$/) {
+		my $short_title = "\U$1";
+		$short_title = $Eps{$short_title} if $Eps{$short_title};
+		push @linked_eps, $short_title;
 	}
 });
 open my $dot_fh, '>', 'dot';
@@ -25,6 +27,12 @@ say $dot_fh "digraph G {\n\toverlap = false\n";
 
 my $feed_title = $feed->query('/channel/title')->text_content;
 my $count = $feed->item_count;
+
+for my $it ($feed->query('//item') ) {		## Creating the Hash %Eps
+	my $title = $it->query('title')->text_content;
+	$title =~ /^(CRE\d{3})/;	## the string in the parentheses will be captured in $1
+	$Eps{$1} = $title;
+}
 for my $it ($feed->query('//item') ) { 
 	my $title = $it->query('title')->text_content;
 	my $comment_number = $it->query('slash:comments')->text_content;
