@@ -1,20 +1,18 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 use strict;
 use utf8;
-use diagnostics;
 use feature qw(say);
 use LWP::Simple qw(get);
 use XML::RSS::Parser qw(parse_string parse_file);
 use URI::Find;
 use Unicode::String;
-
 my $xml = get("http://cre.fm/feed");
 
 my $p = XML::RSS::Parser->new;
 #use FileHandle;my $fh = FileHandle->new('feed.xml');my $feed = $p->parse_file($fh);
 my $feed = $p->parse_string($xml);
 
-my(@linked_eps,%Eps);
+my(@linked_eps, %Eps);
 my $finder = URI::Find->new(sub {
 	if ($_[0] =~ /(cre\d{3})(?:.html|)$/) {
 		my $short_title = "\U$1";
@@ -22,11 +20,9 @@ my $finder = URI::Find->new(sub {
 		push @linked_eps, $short_title;
 	}
 });
-open my $dot_fh, '>', 'dot';
-say $dot_fh "digraph G {\n\toverlap = false\n";
 
-my $feed_title = $feed->query('/channel/title')->text_content;
-my $count = $feed->item_count;
+#my $feed_title = $feed->query('/channel/title')->text_content;
+#my $count = $feed->item_count;
 
 for my $it ($feed->query('//item') ) {		## Creating the Hash %Eps
 	my $title = $it->query('title')->text_content;
@@ -34,6 +30,9 @@ for my $it ($feed->query('//item') ) {		## Creating the Hash %Eps
 	$title =~ /^(CRE\d{3})/;	## the string in the parentheses will be captured in $1
 	$Eps{$1} = "$title ($comment_number)";
 }
+open my $dot_fh, '>', 'dot';	## opening the DOT file
+print $dot_fh "digraph G {\n\toverlap = false\n\n";
+
 for my $it ($feed->query('//item') ) { 
 	my $title = $it->query('title')->text_content;
 	my $comment_number = $it->query('slash:comments')->text_content;
@@ -41,13 +40,16 @@ for my $it ($feed->query('//item') ) {
 	my $content = $it->query('content:encoded')->text_content;
 	my $node_name = "$title ($comment_number)";
 	$finder->find(\$content);
-	say $dot_fh "\"$node_name\" [shape=box];" if @linked_eps;
-	print $dot_fh map { "\"$node_name\" -> \"$_\";\n" } @linked_eps if @linked_eps;
-	say "Verweise auf andere Episoden: " . @linked_eps;
-	print map { "\t" . Unicode::String::utf8($_)->utf8() . "\n" } @linked_eps;
+	if (@linked_eps) {
+		say $dot_fh qq("$node_name" [shape=box];);
+		print $dot_fh map { qq("$node_name" -> "$_";\n) } @linked_eps;
+	}
 	$title = Unicode::String::utf8($title)->utf8();
 	say "$title\t\tKommentare: $comment_number\t\tLink: $link";
 	say "Erstellungsdatum: " . $it->query('pubDate')->text_content;
+	say "Verweise auf andere Episoden: " . @linked_eps;
+	print map { "\t" . Unicode::String::utf8($_)->utf8() . "\n" } @linked_eps;
+	print "\n";
 	undef @linked_eps;
 }
 say $dot_fh '}';
