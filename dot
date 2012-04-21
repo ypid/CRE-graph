@@ -1,8 +1,11 @@
 digraph G {
 	overlap = false
 
-"CRE191 Internet im Festnetz (356)" [shape=box];
-"CRE191 Internet im Festnetz (356)" -> "CRE100";
+"CRE192 Poststrukturalismus 2 (64)" [shape=box];
+"CRE192 Poststrukturalismus 2 (64)" -> "CRE091";
+"CRE192 Poststrukturalismus 2 (64)" -> "CRE121";
+"CRE191 Internet im Festnetz (362)" [shape=box];
+"CRE191 Internet im Festnetz (362)" -> "CRE100";
 "CRE190 Rhetorik (39)" [shape=box];
 "CRE190 Rhetorik (39)" -> "CRE041";
 "CRE190 Rhetorik (39)" -> "CRE081";
@@ -29,7 +32,7 @@ digraph G {
 "CRE176 Cloud Computing (25)" [shape=box];
 "CRE176 Cloud Computing (25)" -> "CRE092";
 "CRE176 Cloud Computing (25)" -> "CRE163 Ruby und Rails (27)";
-"CRE176 Cloud Computing (25)" -> "CRE167 node.js (17)";
+"CRE176 Cloud Computing (25)" -> "CRE167 node.js (18)";
 "CRE175 Hackerbrausen (26)" [shape=box];
 "CRE175 Hackerbrausen (26)" -> "CRE121";
 "CRE175 Hackerbrausen (26)" -> "CRE143";
@@ -54,10 +57,10 @@ digraph G {
 "CRE168 Wheelmap (14)" [shape=box];
 "CRE168 Wheelmap (14)" -> "CRE103";
 "CRE168 Wheelmap (14)" -> "CRE113";
-"CRE167 node.js (17)" [shape=box];
-"CRE167 node.js (17)" -> "CRE146";
-"CRE167 node.js (17)" -> "CRE163 Ruby und Rails (27)";
-"CRE167 node.js (17)" -> "CRE082";
+"CRE167 node.js (18)" [shape=box];
+"CRE167 node.js (18)" -> "CRE146";
+"CRE167 node.js (18)" -> "CRE163 Ruby und Rails (27)";
+"CRE167 node.js (18)" -> "CRE082";
 "CRE166 Segeln (39)" [shape=box];
 "CRE166 Segeln (39)" -> "CRE097";
 "CRE166 Segeln (39)" -> "CRE133";
@@ -74,7 +77,7 @@ digraph G {
 "CRE163 Ruby und Rails (27)" -> "CRE125";
 "CRE163 Ruby und Rails (27)" -> "CRE146";
 "CRE162 Brettspiele (44)" [shape=box];
-"CRE162 Brettspiele (44)" -> "CRE160 DDR (74)";
+"CRE162 Brettspiele (44)" -> "CRE160";
 "CRE162 Brettspiele (44)" -> "CRE142";
 "CRE161 Der CCC und die Öffentlichkeit (10)" [shape=box];
 "CRE161 Der CCC und die Öffentlichkeit (10)" -> "CRE159";
