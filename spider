@@ -50,8 +50,8 @@ for my $it ($feed->query('//item') ) {
 	say "$title\t\tKommentare: $comment_number\t\tLink: $link";
 	say "Erstellungsdatum: " . $it->query('pubDate')->text_content;
 	say "Verweise auf andere Episoden: " . @linked_eps;
-	print map { "\t" . Unicode::String::utf8($_)->utf8() . "\n" } @linked_eps;
-	print "\n";
+	print map { '\t' . Unicode::String::utf8($_)->utf8() . '\n' } @linked_eps;
+	print '\n';
 	undef @linked_eps;
 }
 say {$dot_fh} '}';
