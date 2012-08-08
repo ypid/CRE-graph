@@ -1,10 +1,10 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 use strict;
-use diagnostics;
 #use 5.010;
 use feature qw(say);
 use autodie;
-#use utf8;
+use utf8;
+binmode(STDOUT, ":utf8");
 use WWW::Mechanize;
 
 my $url = 'http://cre.fm/archiv';
@@ -18,16 +18,16 @@ my $c = 0;
 for my $ep_linkO ($mech->find_all_links(url_regex => qr/cre\d{3}$/)) {
 	my $ep_text = $ep_linkO->text();
 	last if $ep_text =~ /^CRE001/;
-	$ep_text =~ s/Chaosradio Express (\d{3}):/CRE$1/;  ## This is nessesary, because a few non-uniform titles
+	$ep_text =~ s/Chaosradio Express (\d{3}):/CRE$1/; ## This is nessesary, because of a few non-uniform titles
 	my $ep_url = $ep_linkO->url();
 	$mech->get($ep_url);
-	my @ref_eps;	## temp array for all references. Only for printing the items after the parent item and count them
+	my @ref_eps; ## temp array for all references. Only for printing the items after the parent item and count them
 	for ($mech->find_all_links(url_regex => qr/cre\d{3}(.html|)$/)) {
 		my $side_url = $_->url();
 		next if $side_url eq $ep_url;
 		my $text = $_->text() or next;
 		last if $text eq "Tweet";
-		$text =~ s/Chaosradio Express (\d{3}):/CRE$1/;	## This is nessesary, because a few non-uniform titles
+		$text =~ s/Chaosradio Express (\d{3}):/CRE$1/; ## This is nessesary, because of a few non-uniform titles
 		push @ref_eps, $text;
 		say $dot_fh "\"$ep_text\" -> \"$text\";";
 	}
@@ -38,5 +38,5 @@ for my $ep_linkO ($mech->find_all_links(url_regex => qr/cre\d{3}$/)) {
 #	$c++;
 	last if $c == 10;
 }
-say $dot_fh '}';
 
+say $dot_fh '}';

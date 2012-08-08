@@ -1,6 +1,8 @@
 digraph G {
 	overlap = false
 
+"CRE192 Poststrukturalismus 2" -> "CRE091 Poststrukturalismus";
+"CRE192 Poststrukturalismus 2" -> "CRE121 Internet-Meme";
 "CRE191 Internet im Festnetz" -> "CRE100 Das Internet und die Hacker";
 "CRE190 Rhetorik" -> "CRE041 Sprachen";
 "CRE190 Rhetorik" -> "CRE081 Neusprech im Schnüffelstaat";
