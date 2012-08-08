@@ -1,18 +1,18 @@
 digraph G {
 	overlap = false
 
-"CRE192 Poststrukturalismus 2 (85)" [shape=box];
-"CRE192 Poststrukturalismus 2 (85)" -> "CRE091";
-"CRE192 Poststrukturalismus 2 (85)" -> "CRE121";
-"CRE191 Internet im Festnetz (372)" [shape=box];
-"CRE191 Internet im Festnetz (372)" -> "CRE100";
+"CRE192 Poststrukturalismus 2 (86)" [shape=box];
+"CRE192 Poststrukturalismus 2 (86)" -> "CRE091";
+"CRE192 Poststrukturalismus 2 (86)" -> "CRE121";
+"CRE191 Internet im Festnetz (373)" [shape=box];
+"CRE191 Internet im Festnetz (373)" -> "CRE100";
 "CRE190 Rhetorik (41)" [shape=box];
 "CRE190 Rhetorik (41)" -> "CRE041";
 "CRE190 Rhetorik (41)" -> "CRE081";
 "CRE190 Rhetorik (41)" -> "CRE093";
 "CRE190 Rhetorik (41)" -> "CRE158";
-"CRE187 Paparazzi (24)" [shape=box];
-"CRE187 Paparazzi (24)" -> "CRE106";
+"CRE187 Paparazzi (25)" [shape=box];
+"CRE187 Paparazzi (25)" -> "CRE106";
 "CRE183 TETRA Bündelfunk (10)" [shape=box];
 "CRE183 TETRA Bündelfunk (10)" -> "CRE151";
 "CRE183 TETRA Bündelfunk (10)" -> "CRE087";
@@ -29,10 +29,10 @@ digraph G {
 "CRE179 GSM Security (29)" -> "CRE110";
 "CRE178 Jugendmedienarbeit (15)" [shape=box];
 "CRE178 Jugendmedienarbeit (15)" -> "CRE162";
-"CRE176 Cloud Computing (25)" [shape=box];
-"CRE176 Cloud Computing (25)" -> "CRE092";
-"CRE176 Cloud Computing (25)" -> "CRE163 Ruby und Rails (27)";
-"CRE176 Cloud Computing (25)" -> "CRE167 node.js (19)";
+"CRE176 Cloud Computing (26)" [shape=box];
+"CRE176 Cloud Computing (26)" -> "CRE092";
+"CRE176 Cloud Computing (26)" -> "CRE163 Ruby und Rails (27)";
+"CRE176 Cloud Computing (26)" -> "CRE167 node.js (19)";
 "CRE175 Hackerbrausen (26)" [shape=box];
 "CRE175 Hackerbrausen (26)" -> "CRE121";
 "CRE175 Hackerbrausen (26)" -> "CRE143";
@@ -54,9 +54,9 @@ digraph G {
 "CRE169 Bluetooth (7)" -> "CRE110";
 "CRE169 Bluetooth (7)" -> "CRE116";
 "CRE169 Bluetooth (7)" -> "CRE076";
-"CRE168 Wheelmap (14)" [shape=box];
-"CRE168 Wheelmap (14)" -> "CRE103";
-"CRE168 Wheelmap (14)" -> "CRE113";
+"CRE168 Wheelmap (15)" [shape=box];
+"CRE168 Wheelmap (15)" -> "CRE103";
+"CRE168 Wheelmap (15)" -> "CRE113";
 "CRE167 node.js (19)" [shape=box];
 "CRE167 node.js (19)" -> "CRE146";
 "CRE167 node.js (19)" -> "CRE163 Ruby und Rails (27)";
