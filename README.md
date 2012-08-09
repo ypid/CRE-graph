@@ -10,6 +10,8 @@ Call make to generate a graph from the current data.
 # Resoult
 * http://github.com/ypid/CRE-graph/raw/master/CRE-Graph.pdf
 * http://github.com/ypid/CRE-graph/raw/master/CRE-Graph.png
+* A small cutting and a short introduction is on my blog (in German)
+	http://ypid.wordpress.com/2012/04/02/welche-cre-folgen-beziehen-sich-auf-andere/
 
 # Dependencies
 
