@@ -46,9 +46,9 @@ digraph G {
 "CRE167 node.js" -> "CRE082 Erlang";
 "CRE166 Segeln" -> "CRE097 File & Print Sharing";
 "CRE166 Segeln" -> "CRE133 Piraten";
-"CRE165 Privatsphäre" -> "CRE060 Retrofuturismus";
-"CRE165 Privatsphäre" -> "CRE121 Internet-Meme";
-"CRE165 Privatsphäre" -> "CRE158 LiquidFeedback";
+"CRE165" -> "CRE060 Retrofuturismus";
+"CRE165" -> "CRE121 Internet-Meme";
+"CRE165" -> "CRE158 LiquidFeedback";
 "CRE164 Urheberrecht" -> "CRE162 Brettspiele";
 "CRE163 Ruby und Rails" -> "CRE084 LISP";
 "CRE163 Ruby und Rails" -> "CRE082 Erlang";
@@ -83,9 +83,9 @@ digraph G {
 "CRE146 JavaScript" -> "CRE107 Barrierefreiheit im Web";
 "CRE146 JavaScript" -> "CRE084 LISP";
 "CRE146 JavaScript" -> "CRE031 Programmiersprachen und Dylan";
-"CRE145 Musik und MIDI-Hacking" -> "CRE136 Techno";
-"CRE145 Musik und MIDI-Hacking" -> "CRE067 Microcontroller";
-"CRE145 Musik und MIDI-Hacking" -> "CRE138 Basteln im 21. Jahrhundert";
+"CRE145 Musik und" -> "CRE136 Techno";
+"CRE145 Musik und" -> "CRE067 Microcontroller";
+"CRE145 Musik und" -> "CRE138 Basteln im 21. Jahrhundert";
 "CRE141 IPv4" -> "CRE100 Das Internet und die Hacker";
 "CRE141 IPv4" -> "CRE116 Mobile Ad-hoc Netzwerke";
 "CRE140 FoeBuD" -> "CRE038 Eine Reise in die Vergangenheit";
@@ -108,10 +108,10 @@ digraph G {
 "CRE124 Kampf gegen Zensursula" -> "CRE029 Haftung für Links und das Telemediengesetz";
 "CRE123 Die Bayrische Hackerpost" -> "CRE077 TUWAT.TXT";
 "CRE123 Die Bayrische Hackerpost" -> "CRE100 Das Internet und die Hacker";
-"CRE122 Compilerbau und Typtheorie" -> "CRE031 Programmiersprachen und Dylan";
-"CRE122 Compilerbau und Typtheorie" -> "CRE114 LLVM";
-"CRE122 Compilerbau und Typtheorie" -> "CRE063 Die Programmiersprache C++";
-"CRE122 Compilerbau und Typtheorie" -> "CRE088 Python und PyPy";
+"CRE122 Compilerbau und" -> "CRE031 Programmiersprachen und Dylan";
+"CRE122 Compilerbau und" -> "CRE114 LLVM";
+"CRE122 Compilerbau und" -> "CRE063 Die Programmiersprache C++";
+"CRE122 Compilerbau und" -> "CRE088 Python und PyPy";
 "CRE120 OpenBSC" -> "CRE042 OpenMoko";
 "CRE120 OpenBSC" -> "CRE087 Software Defined Radio";
 "CRE120 OpenBSC" -> "CRE110 Next Generation Networks";
@@ -163,7 +163,7 @@ digraph G {
 "CRE076 OpenWRT" -> "CRE071 One Laptop Per Child (OLPC)";
 "CRE076 OpenWRT" -> "CRE016 Mesh Networking";
 "CRE076 OpenWRT" -> "CRE045 Mesh Networking Update";
-"CRE073 World of Warcraft" -> "CRE057 BitTorrent";
+"CRE073 World of" -> "CRE057 BitTorrent";
 "CRE071 One Laptop Per Child" -> "CRE055 Metalab";
 "CRE071 One Laptop Per Child" -> "CRE016 Wireless Mesh Networking";
 "CRE071 One Laptop Per Child" -> "CRE045 Mesh Networking Update";
@@ -185,11 +185,11 @@ digraph G {
 "CRE058 24C3 Preview" -> "CRE034 Die FIFA WM-Tickets";
 "CRE058 24C3 Preview" -> "CRE052 Voice over IP Systeme";
 "CRE058 24C3 Preview" -> "CRE055 Metalab";
-"CRE055 Metalab" -> "CRE016 Mesh Networking";
-"CRE055 Metalab" -> "CRE045 Mesh Networking Update";
-"CRE052 Voice over IP Systeme" -> "CRE040 Digitale Telefonnetze";
+"CRE055 Metalab" -> "Chaosradio Express 016: Mesh Networking";
+"CRE055 Metalab" -> "Chaosradio Express 045: Mesh Networking Update";
+"CRE052 Voice over IP Systeme" -> "Chaosradio Express 040: Digitale Telefonnetze";
 "CRE051 Vorratsdatenspeicherung, Anonymität und digitale Freiräume" -> "CRE040 Digitale Telefonnetze";
 "CRE050 Der Wahlstift" -> "CRE039 Der NEDAP-Hack";
-"CRE045 Mesh Networking Update" -> "CRE016 Mesh Networking";
+"CRE045 Mesh Networking Update" -> "Chaosradio Express 016: Mesh Networking";
 "CRE026 Free Software Foundation" -> "CRE017 GNU General Public License";
 }

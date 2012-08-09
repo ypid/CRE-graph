@@ -1,0 +1,108 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use autodie;
+use utf8;
+use open qw(:std :utf8);
+binmode(STDOUT, ":utf8");
+use feature qw(say);
+use LWP::Simple qw(get getstore);
+use HTML::Parser 3.00 ();
+use Storable;
+my $Storable_file = 'CRE_info_hash';
+
+my $url = 'http://cre.fm/archiv';
+
+my (	%inside,
+	$tmp_date,
+	%CRE,		## The CRE_info_hash
+	$c_CRE,		## Contains the current key for %CRE for example cre155
+);
+sub start {
+	my $tag = shift;
+	my $num = shift;
+	if ($tag eq 'tr' and exists $_[0]->{'class'} and $_[0]->{'class'} eq 'podcast_archive_element') {
+		&end('tr.PAE', '+1');
+	}
+	elsif ($tag eq 'td' and $inside{'tr.PAE'} and exists $_[0]->{'class'} and $_[0]->{'class'} eq 'date') {
+		&end('tr.PAE.date', '+1');
+	}
+	elsif ($tag eq 'span' and $inside{'tr.PAE.date'} and exists $_[0]->{'class'} and $_[0]->{'class'} eq 'release_date') {
+		&end('tr.PAE.date.span', '+1');
+	}
+	elsif ($tag eq 'td' and $inside{'tr.PAE'} and exists $_[0]->{'class'} and $_[0]->{'class'} eq 'title') {
+		&end('tr.PAE.title', '+1');
+	}
+	elsif ($tag eq 'a' and $inside{'tr.PAE.title'} and exists $_[0]->{'href'}) {
+		my $url = $_[0]->{'href'};
+		$url =~ /(cre\d{3})$/;# , date => $tmp_date 
+		$c_CRE = uc $1;
+		$CRE{$c_CRE}{'url'} = $url;
+		$CRE{$c_CRE}{'date'} = $tmp_date;
+		&end('tr.PAE.title.a', '+1');
+	}
+	elsif ($tag eq 'strong' and $inside{'tr.PAE.title.a'}) {
+		&end('tr.PAE.title.a.Title', '+1');
+	}
+	elsif ($tag eq 'em' and $inside{'tr.PAE.title'}) {
+		&end('tr.PAE.title.em', '+1');
+	}
+	elsif ($tag eq 'strong' and $inside{'tr.PAE.title'}) {
+		&end('tr.PAE.title.interlocutor', '+1');
+	}
+	elsif ($tag eq 'td' and $inside{'tr.PAE'} and exists $_[0]->{'class'} and $_[0]->{'class'} eq 'duration') {
+		&end('tr.PAE.duration', '+1');
+	}
+	&end($tag, $num);
+}
+
+sub end {
+	#my($tag, $num) = @_;
+	$inside{$_[0]} += $_[1];
+}
+
+sub text {
+	if ($inside{'tr.PAE.date.span'}) {
+		$_[0] =~ /(\d{2})\.(\d{2})\.(\d{4})/;
+		$tmp_date = "$3-$2-$1";
+		&end('tr.PAE.date.span', '-1');
+		&end('tr.PAE.date', '-1');
+	}
+	if ($inside{'tr.PAE.title.a.Title'}) {
+		$CRE{$c_CRE}{'title'} = $_[0];
+		&end('tr.PAE.title.a.Title', '-1');
+		&end('tr.PAE.title.a', '-1');	# still inside tr.PAE.title.a ...
+	}
+	if ($inside{'tr.PAE.title.em'}) {
+		$CRE{$c_CRE}{'subtitle'} = $_[0];
+		&end('tr.PAE.title.em', '-1');
+	}
+	if ($inside{'tr.PAE.title.interlocutor'} and $_[0] ne 'Gesprächspartner:') {
+		$_[0] =~ s/'/"/g;
+		$_[0] =~ / (.*\w)/; ## captures the interlocutors without the crap at the end of the string
+		$CRE{$c_CRE}{'interlocutor'} = $1;
+		&end('tr.PAE.title.interlocutor', '-1');
+		&end('tr.PAE.title', '-1');
+	}
+	if ($inside{'tr.PAE.duration'}) {
+		$_[0] =~ /(\d{2}:\d{2}:\d{2})/; ## converts the date TT.MM.YYYY to ISO 8601
+		$CRE{$c_CRE}{'duration'} = $1;
+		&end('tr.PAE.duration', '-1');
+		&end('tr.PAE', '-1');
+	}
+}
+my $p = HTML::Parser->new(api_version => 3,
+		  handlers    => [start => [\&start, "tagname, '+1', attr"],
+				  end   => [\&end, "tagname, '-1'"],
+				  text  => [\&text, "dtext"],
+				 ],
+		  marked_sections => 1,
+	);
+my $root_html_file = 'archiv.html';
+#getstore($url, $root_html_file);
+#open(my $FH_root_html, '<:utf8', $root_html_file);
+#$p->parse_file($FH_root_html);
+my $root_html_string = get($url);
+$p->parse($root_html_string);
+
+store(\%CRE, $Storable_file);

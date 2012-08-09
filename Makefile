@@ -1,9 +1,12 @@
 all: render
 
-dot:
+dot: CRE_info_hash
 	./spider
 
 render: CRE-Graph.png CRE-Graph.pdf
+
+CRE_info_hash:
+	gen_CRE_info_hash
 
 CRE-Graph.png: dot
 	dot -Tpng -o CRE-Graph.png dot -Gcharset=latin1
