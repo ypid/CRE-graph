@@ -1,0 +1,31 @@
+#!/usr/bin/perl -w
+use strict;
+use feature qw(say);
+use autodie;
+use utf8;
+binmode(STDOUT, ":utf8");
+use Storable;
+my $Storable_file = 'CRE_info_hash';
+
+my %CRE = %{retrieve $Storable_file};
+
+my(%interlocutor, %interlocutor_count);
+my $interlocutor_max_length = 0;
+for my $key (reverse sort keys %CRE) {
+	my $interlocutor = $CRE{$key}{'interlocutor'};
+	next unless defined $interlocutor;
+	my @interlocutors = split /, /, $interlocutor;
+	for (@interlocutors) {
+		push @{$interlocutor{$_}}, $key;
+		$interlocutor_count{$_}++;
+		if ($interlocutor_max_length < length($_)) {
+			$interlocutor_max_length = length($_);
+		}
+	}
+}
+
+#$interlocutor_max_length = 15;
+for my $interlocutor (reverse sort { $interlocutor_count{$a} <=> $interlocutor_count{$b} } keys %interlocutor_count) {
+	printf "%${interlocutor_max_length}s (%d): ", $interlocutor, $interlocutor_count{$interlocutor};
+	say "@{$interlocutor{$interlocutor}}";
+}

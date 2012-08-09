@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+## perl script to generate a hash containing some meta information about each episode from the html page
 use strict;
 use warnings;
 use autodie;

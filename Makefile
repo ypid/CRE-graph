@@ -1,23 +1,49 @@
-all: render
+DotFlags=-Gcharset=latin1
+.PHONY: clean all-clean
 
-dot: CRE_info_hash
+all: render interlocutor-hitlist.txt
+
+CRE-Graph.dot: CRE_info_hash
 	./spider
 
-render: CRE-Graph.png CRE-Graph.pdf
+more_than_one_interlocutor.dot: CRE_info_hash
+	./more_than_one_interlocutor
+
+interlocutor-hitlist.txt: CRE_info_hash
+	./interlocutor-hitlist > $@
+
+render: render-png render-pdf
+
+render-png: CRE-Graph.png more_than_one_interlocutor.png 
+
+render-pdf: CRE-Graph.pdf more_than_one_interlocutor.pdf
+
+render-svg: CRE-Graph.svg more_than_one_interlocutor.svg
 
 CRE_info_hash:
-	gen_CRE_info_hash
+	./gen_CRE_info_hash
 
-CRE-Graph.png: dot
-	dot -Tpng -o CRE-Graph.png dot -Gcharset=latin1
+CRE-Graph.png: CRE-Graph.dot
+	dot -Tpng -o $@ $^ $(DotFlags)
 
-CRE-Graph.svg: dot
-	dot -Tsvg -o CRE-Graph.svg dot -Gcharset=latin1
+CRE-Graph.svg: CRE-Graph.dot
+	dot -Tsvg -o $@ $^ $(DotFlags)
 ## The svg file will be damaged. I can't tell why ...
 
-CRE-Graph.pdf: dot
-	dot -Tpdf -o CRE-Graph.pdf dot -Gcharset=latin1
+CRE-Graph.pdf: CRE-Graph.dot
+	dot -Tpdf -o $@ $^ $(DotFlags)
+
+more_than_one_interlocutor.png: more_than_one_interlocutor.dot
+	dot -Tpng -o $@ $^ $(DotFlags)
+
+more_than_one_interlocutor.svg: more_than_one_interlocutor.dot
+	dot -Tsvg -o $@ $^ $(DotFlags)
+
+more_than_one_interlocutor.pdf: more_than_one_interlocutor.dot
+	dot -Tpdf -o $@ $^ $(DotFlags)
 
 clean:
-	rm -f dot
+	rm -f *.dot CRE_info_hash
 
+all-clean: clean
+	rm -f *.png *.pdf *.svg interlocutor-hitlist.txt

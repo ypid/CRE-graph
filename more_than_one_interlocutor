@@ -1,0 +1,36 @@
+#!/usr/bin/perl -w
+use strict;
+use feature qw(say);
+use autodie;
+use utf8;
+binmode(STDOUT, ":utf8");
+use Storable;
+my $Storable_file = 'CRE_info_hash';
+
+my %CRE = %{retrieve $Storable_file};
+
+open my $dot_fh, '>', 'more_than_one_interlocutor.dot';
+say $dot_fh "digraph G {\n\toverlap = false\n";
+
+my %interlocutor;
+my %interlocutor_count;
+for my $key (reverse sort keys %CRE) {
+	my $interlocutor = $CRE{$key}{'interlocutor'};
+	next unless defined $interlocutor;
+	$interlocutor =~ s/"/\\"/g;
+	my @interlocutors = split /, /, $interlocutor;
+	next if @interlocutors == 1; ## Boring
+	for (@interlocutors) {
+		push @{$interlocutor{$_}}, $key;
+		$interlocutor_count{$_}++;
+	}
+}
+for my $interlocutor (reverse sort { $interlocutor_count{$a} <=> $interlocutor_count{$b} } keys %interlocutor_count) {
+	#next if $interlocutor_count{$interlocutor} == 1;
+	#say "$interlocutor: $interlocutor_count{$interlocutor}  @{$interlocutor{$interlocutor}}";
+	for (@{$interlocutor{$interlocutor}}) {
+		say {$dot_fh} qq("$interlocutor" -> "$CRE{$_}{'title'}";);
+	}
+}
+
+say $dot_fh '}';
