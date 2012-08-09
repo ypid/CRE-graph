@@ -8,13 +8,18 @@ After this the program dot can do it's job and render some nice graphs.
 Call make to generate a graph from the current data.
 
 There is also a implementation that uses the XML podcast feed.
-https://github.com/ypid/CRE-graph/tree/using-rssfeed
+http://github.com/ypid/CRE-graph/tree/using-rssfeed
 
 # Resoult
-* http://github.com/ypid/CRE-graph/raw/master/CRE-Graph.pdf
-* http://github.com/ypid/CRE-graph/raw/master/CRE-Graph.png
+* https://github.com/ypid/CRE-graph/raw/master/CRE-Graph.pdf
+* https://github.com/ypid/CRE-graph/raw/master/CRE-Graph.png
 * A small cutting and a short introduction is on my blog (in German)
 	http://ypid.wordpress.com/2012/04/02/welche-cre-folgen-beziehen-sich-auf-andere/
+
+I also added some statistics:
+* Sorted after duration: https://github.com/ypid/CRE-graph/blob/master/duration-hitlist
+* Sorted after interlocutor: https://github.com/ypid/CRE-graph/blob/master/interlocutor-hitlist.txt
+* Sorted after interlocutor (Graph): https://raw.github.com/ypid/CRE-graph/master/more\_than\_one\_interlocutor.png
 
 # Dependencies
 * Perl 5.10 and the module WWW::Mechanize Storable HTML::Parser LWP::Simple

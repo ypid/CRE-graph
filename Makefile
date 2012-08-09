@@ -1,7 +1,7 @@
 DotFlags=-Gcharset=latin1
 .PHONY: clean all-clean
 
-all: render interlocutor-hitlist.txt
+all: render interlocutor-hitlist.txt duration-hitlist.txt
 
 CRE-Graph.dot: CRE_info_hash
 	./spider
@@ -11,6 +11,9 @@ more_than_one_interlocutor.dot: CRE_info_hash
 
 interlocutor-hitlist.txt: CRE_info_hash
 	./interlocutor-hitlist > $@
+
+duration-hitlist.txt: CRE_info_hash
+	./duration-hitlist > $@
 
 render: render-png render-pdf
 
@@ -46,4 +49,4 @@ clean:
 	rm -f *.dot CRE_info_hash
 
 all-clean: clean
-	rm -f *.png *.pdf *.svg interlocutor-hitlist.txt
+	rm -f *.png *.pdf *.svg interlocutor-hitlist.txt duration-hitlist.txt:

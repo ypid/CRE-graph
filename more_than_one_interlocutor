@@ -14,7 +14,7 @@ say $dot_fh "digraph G {\n\toverlap = false\n";
 
 my %interlocutor;
 my %interlocutor_count;
-for my $key (reverse sort keys %CRE) {
+for my $key (keys %CRE) {
 	my $interlocutor = $CRE{$key}{'interlocutor'};
 	next unless defined $interlocutor;
 	$interlocutor =~ s/"/\\"/g;
@@ -25,7 +25,7 @@ for my $key (reverse sort keys %CRE) {
 		$interlocutor_count{$_}++;
 	}
 }
-for my $interlocutor (reverse sort { $interlocutor_count{$a} <=> $interlocutor_count{$b} } keys %interlocutor_count) {
+for my $interlocutor (sort { $interlocutor_count{$b} <=> $interlocutor_count{$a} } keys %interlocutor_count) {
 	#next if $interlocutor_count{$interlocutor} == 1;
 	#say "$interlocutor: $interlocutor_count{$interlocutor}  @{$interlocutor{$interlocutor}}";
 	for (@{$interlocutor{$interlocutor}}) {

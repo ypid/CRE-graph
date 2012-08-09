@@ -11,7 +11,7 @@ my %CRE = %{retrieve $Storable_file};
 
 my(%interlocutor, %interlocutor_count);
 my $interlocutor_max_length = 0;
-for my $key (reverse sort keys %CRE) {
+for my $key (keys %CRE) {
 	my $interlocutor = $CRE{$key}{'interlocutor'};
 	next unless defined $interlocutor;
 	my @interlocutors = split /, /, $interlocutor;
@@ -25,7 +25,7 @@ for my $key (reverse sort keys %CRE) {
 }
 
 #$interlocutor_max_length = 15;
-for my $interlocutor (reverse sort { $interlocutor_count{$a} <=> $interlocutor_count{$b} } keys %interlocutor_count) {
+for my $interlocutor (sort { $interlocutor_count{$b} <=> $interlocutor_count{$a} } keys %interlocutor_count) {
 	printf "%${interlocutor_max_length}s (%d): ", $interlocutor, $interlocutor_count{$interlocutor};
 	say "@{$interlocutor{$interlocutor}}";
 }

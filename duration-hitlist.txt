@@ -1,0 +1,189 @@
+Rank 001 with 03:13:52: CRE194 Bier
+Rank 002 with 03:07:20: CRE191 Internet im Festnetz
+Rank 003 with 03:06:22: CRE160 DDR
+Rank 004 with 02:56:34: CRE172 Holland und die Hacker
+Rank 005 with 02:52:15: CRE147 Mikrokosmos, Makrokosmos
+Rank 006 with 02:50:52: CRE104 E-Mail
+Rank 007 with 02:49:39: CRE097 File & Print Sharing
+Rank 008 with 02:48:36: CRE155 Malware und Botnets
+Rank 009 with 02:46:49: CRE092 Virtualisierung
+Rank 010 with 02:45:05: CRE089 Computerspiele
+Rank 011 with 02:43:53: CRE158 LiquidFeedback
+Rank 012 with 02:43:49: CRE125 CouchDB
+Rank 013 with 02:42:33: CRE177 Commodore 64
+Rank 014 with 02:42:00: CRE130 Verteilte Versionskontrollsysteme
+Rank 015 with 02:40:38: CRE095 Netzpolitik und das Telekom-Paket
+Rank 016 with 02:34:14: CRE154 Digital Audio
+Rank 017 with 02:30:23: CRE156 Das Sonnensystem
+Rank 018 with 02:28:28: CRE053 Netlabels
+Rank 019 with 02:28:25: CRE192 Poststrukturalismus 2
+Rank 020 with 02:28:14: CRE124 Kampf gegen Zensursula
+Rank 021 with 02:27:38: CRE190 Rhetorik
+Rank 022 with 02:26:35: CRE176 Cloud Computing
+Rank 023 with 02:25:43: CRE142 Steuern
+Rank 024 with 02:25:26: CRE135 Mut zur Freiheit
+Rank 025 with 02:24:30: CRE162 Brettspiele
+Rank 026 with 02:24:28: CRE163 Ruby und Rails
+Rank 027 with 02:24:18: CRE141 IPv4
+Rank 028 with 02:22:35: CRE173 Rollenspiele
+Rank 029 with 02:22:18: CRE038 Eine Reise in die Vergangenheit
+Rank 030 with 02:22:12: CRE113 OpenStreetMap
+Rank 031 with 02:21:55: CRE121 Internet-Meme
+Rank 032 with 02:21:52: CRE146 JavaScript
+Rank 033 with 02:20:21: CRE183 TETRA Bündelfunk
+Rank 034 with 02:19:39: CRE159 Nachrichtendienste
+Rank 035 with 02:19:09: CRE051 Vorratsdatenspeicherung, Anonymität und digitale Freiräume
+Rank 036 with 02:18:52: CRE164 Urheberrecht
+Rank 037 with 02:18:45: CRE171 Die Eisenbahn
+Rank 038 with 02:18:19: CRE047 Der Elektronische Reisepass
+Rank 039 with 02:18:14: CRE182 Elektronisches Geld
+Rank 040 with 02:17:56: CRE165 Privatsphäre
+Rank 041 with 02:17:48: CRE178 Jugendmedienarbeit
+Rank 042 with 02:16:57: CRE131 Mensch-Maschine-Interaktion
+Rank 043 with 02:16:25: CRE136 Techno
+Rank 044 with 02:15:58: CRE073 World of Warcraft
+Rank 045 with 02:13:00: CRE127 TeX und LaTeX
+Rank 046 with 02:12:27: CRE080 Geschichte der Typographie
+Rank 047 with 02:11:23: CRE170 Arcade Games
+Rank 048 with 02:10:40: CRE179 GSM Security
+Rank 049 with 02:10:08: CRE174 Kultur, Gesellschaft, Technologie
+Rank 050 with 02:10:02: CRE057 BitTorrent
+Rank 051 with 02:09:45: CRE128 Wahlrecht und Wahlsysteme
+Rank 052 with 02:09:30: CRE087 Software Defined Radio
+Rank 053 with 02:08:38: CRE129 Globales Dorf – Rechtsfreier Raum?
+Rank 054 with 02:08:33: CRE144 Die Internetwolke
+Rank 055 with 02:08:25: CRE063 Die Programmiersprache C++
+Rank 056 with 02:07:28: CRE100 Das Internet und die Hacker
+Rank 057 with 02:07:12: CRE153 Feuerwehr
+Rank 058 with 02:06:39: CRE118 Das Wahlcomputer-Urteil
+Rank 059 with 02:06:01: CRE149 Synthesizer
+Rank 060 with 02:05:48: CRE122 Compilerbau und Typtheorie
+Rank 061 with 02:04:57: CRE126 Raumfahrt
+Rank 062 with 02:03:42: CRE085 Nur Fliegen ist schöner
+Rank 063 with 02:03:33: CRE060 Retrofuturismus
+Rank 064 with 02:03:07: CRE119 Kaffee
+Rank 065 with 02:02:34: CRE054 GIMP
+Rank 066 with 02:01:55: CRE090 Java
+Rank 067 with 02:01:21: CRE120 OpenBSC
+Rank 068 with 02:00:58: CRE099 Domain Name System
+Rank 069 with 01:59:45: CRE166 Segeln
+Rank 070 with 01:59:31: CRE102 Der DECT Hack
+Rank 071 with 01:59:10: CRE169 Bluetooth
+Rank 072 with 01:58:35: CRE107 Barrierefreiheit im Web
+Rank 073 with 01:58:34: CRE137 AV Streaming
+Rank 074 with 01:58:20: CRE098 Der Mifare-Hack
+Rank 075 with 01:58:16: CRE050 Der Wahlstift
+Rank 076 with 01:57:04: CRE066 Politik für Anfänger
+Rank 077 with 01:56:46: CRE185 Hedonistische Internationale
+Rank 078 with 01:56:22: CRE112 Roboterfussball
+Rank 079 with 01:55:14: CRE096 Audiovisuelle Kunst, VJ-Kultur und Live Cinema
+Rank 080 with 01:55:13: CRE036 Grafikkarten und 3D	CRE061 Medienformate und Codecs
+Rank 081 with 01:55:07: CRE167 node.js
+Rank 082 with 01:54:41: CRE184 Bundeswehr
+Rank 083 with 01:53:02: CRE094 Conversational Design
+Rank 084 with 01:52:50: CRE116 Mobile Ad-hoc Netzwerke
+Rank 085 with 01:52:13: CRE031 Programmiersprachen und Dylan
+Rank 086 with 01:51:59: CRE046 Sicherheit
+Rank 087 with 01:51:38: CRE145 Musik und MIDI-Hacking
+Rank 088 with 01:51:31: CRE064 Usability und Interaktionsdesign
+Rank 089 with 01:51:03: CRE152 Android
+Rank 090 with 01:50:53: CRE138 Basteln im 21. Jahrhundert
+Rank 091 with 01:50:40: CRE091 Poststrukturalismus
+Rank 092 with 01:50:34: CRE070 Mac OS X Anwendungsentwicklung
+Rank 093 with 01:50:29: CRE186 Astropeiler
+Rank 094 with 01:49:07: CRE093 Qualitätsmanagement in der Wikipedia
+Rank 095 with 01:48:19: CRE180 Passivhäuser
+Rank 096 with 01:47:39: CRE108 Schusswaffen
+Rank 097 with 01:47:13: CRE134 Hackerspaces
+Rank 098 with 01:45:21: CRE161 Der CCC und die Öffentlichkeit
+Rank 099 with 01:43:46: CRE106 Mikrokopter
+Rank 100 with 01:43:35: CRE140 FoeBuD
+Rank 101 with 01:43:29: CRE074 Hubschrauber
+Rank 102 with 01:43:25: CRE187 Paparazzi
+Rank 103 with 01:43:18: CRE132 UBERMORGEN.COM
+Rank 104 with 01:43:13: CRE078 Zope und Plone
+Rank 105 with 01:42:41: CRE193 Old School Computing
+Rank 106 with 01:42:13: CRE028 Extreme Programming
+Rank 107 with 01:42:04: CRE157 Fernsehen
+Rank 108 with 01:41:10: CRE111 MediaWiki
+Rank 109 with 01:40:16: CRE188 Telecomix
+Rank 110 with 01:39:57: CRE067 Microcontroller
+Rank 111 with 01:39:50: CRE101 iPhone Anwendungsentwicklung
+Rank 112 with 01:39:42: CRE059 Überwachung
+Rank 113 with 01:37:44: CRE175 Hackerbrausen
+Rank 114 with 01:37:08: CRE139 Medienkompetenz
+Rank 115 with 01:36:50: CRE058 24C3 Preview	CRE151 Die ARM-Architektur
+Rank 116 with 01:36:42: CRE088 Python und PyPy
+Rank 117 with 01:36:16: CRE143 Biohacking
+Rank 118 with 01:35:27: CRE084 LISP
+Rank 119 with 01:35:14: CRE105 OpenBSD
+Rank 120 with 01:34:16: CRE168 Wheelmap
+Rank 121 with 01:33:51: CRE043 Wikipedia für Fortgeschrittene
+Rank 122 with 01:33:40: CRE081 Neusprech im Schnüffelstaat
+Rank 123 with 01:32:51: CRE103 Drupal
+Rank 124 with 01:32:11: CRE181 Aram Bartholl
+Rank 125 with 01:32:08: CRE049 Das ZFS Dateisytem
+Rank 126 with 01:31:48: CRE189 Chaos macht Schule
+Rank 127 with 01:30:40: CRE110 Next Generation Networks
+Rank 128 with 01:30:02: CRE062 Monochrom	CRE075 Energiesparhäuser
+Rank 129 with 01:29:40: CRE029 Haftung für Links und das Telemediengesetz
+Rank 130 with 01:28:34: CRE117 FPGA
+Rank 131 with 01:27:37: CRE077 TUWAT.TXT
+Rank 132 with 01:26:10: CRE086 USB
+Rank 133 with 01:25:44: CRE109 Computer-Telefonie-Integration
+Rank 134 with 01:25:39: CRE052 Voice over IP Systeme
+Rank 135 with 01:24:35: CRE150 Filmsynchronisation
+Rank 136 with 01:21:32: CRE076 OpenWRT	CRE133 Piraten
+Rank 137 with 01:20:51: CRE072 Moderne Webentwicklung
+Rank 138 with 01:19:58: CRE123 Die Bayrische Hackerpost
+Rank 139 with 01:17:33: CRE017 GNU General Public License
+Rank 140 with 01:17:13: CRE048 FreeBSD
+Rank 141 with 01:16:36: CRE042 OpenMoko
+Rank 142 with 01:15:34: CRE065 Elektrische Fahrräder
+Rank 143 with 01:15:06: CRE148 Das Apache Projekt
+Rank 144 with 01:14:35: CRE041 Sprachen
+Rank 145 with 01:13:58: CRE013 Interview mit Jacob Appelbaum
+Rank 146 with 01:10:34: CRE071 One Laptop Per Child
+Rank 147 with 01:09:02: CRE035 Perry Rhodan
+Rank 148 with 01:07:45: CRE016 Wireless Mesh Networking
+Rank 149 with 01:06:50: CRE040 Digitale Telefonnetze
+Rank 150 with 01:06:03: CRE039 Der NEDAP-Hack
+Rank 151 with 01:05:51: CRE055 Metalab
+Rank 152 with 01:05:07: CRE082 Erlang
+Rank 153 with 01:04:49: CRE056 GSM Hacking
+Rank 154 with 01:03:26: CRE069 Der Mac OS X Kernel
+Rank 155 with 01:03:09: CRE005 Das 22C3 Konferenzprogramm
+Rank 156 with 01:02:19: CRE079 GTK+ und GNOME
+Rank 157 with 01:01:36: CRE032 Data Recovery
+Rank 158 with 01:01:33: CRE114 LLVM
+Rank 159 with 01:00:52: CRE068 KDE4
+Rank 160 with 01:00:16: CRE044 WEP is dead	CRE045 Mesh Networking Update
+Rank 161 with 01:00:00: CRE033 K Desktop Environment
+Rank 162 with 00:58:35: CRE115 OpenBICO
+Rank 163 with 00:58:21: CRE020 Mac Security
+Rank 164 with 00:56:50: CRE007 WSIS, Data Retention, Urheberrecht
+Rank 165 with 00:56:09: CRE014 22C3 Rückblick, Veranstaltungen in 2006
+Rank 166 with 00:55:44: CRE083 Die Kritische Masse
+Rank 167 with 00:55:33: CRE022 Windows Security
+Rank 168 with 00:54:15: CRE024 Blinde und Computer
+Rank 169 with 00:50:11: CRE011 Interview mit Joi Ito
+Rank 170 with 00:48:59: CRE015 WMF, Aibo, E-Ink, Prozessoren und Podcasting
+Rank 171 with 00:47:25: CRE019 Fon
+Rank 172 with 00:46:35: CRE037 Das Luftsicherheitsgesetz
+Rank 173 with 00:46:18: CRE003 Die Testsendung
+Rank 174 with 00:44:42: CRE034 Die FIFA WM-Tickets
+Rank 175 with 00:44:36: CRE026 Free Software Foundation
+Rank 176 with 00:44:26: CRE010 Interview mit Régine Débatty
+Rank 177 with 00:43:45: CRE030 Freie Radios und ZIP.FM
+Rank 178 with 00:41:27: CRE018 Dropping Knowledge
+Rank 179 with 00:39:43: CRE025 Samba
+Rank 180 with 00:35:34: CRE009 22C3 Roundup, Nerd Net Radio History
+Rank 181 with 00:33:42: CRE023 OpenVPN
+Rank 182 with 00:31:55: CRE012 Interview mit Eric Blossom
+Rank 183 with 00:31:20: CRE002 22C3, Schäuble, Coral CDN, CACert
+Rank 184 with 00:28:37: CRE006 Das POC
+Rank 185 with 00:28:03: CRE027 CACert
+Rank 186 with 00:27:21: CRE021 Website Relaunch und Feedback
+Rank 187 with 00:26:12: CRE004 Klangwellen aller Art
+Rank 188 with 00:23:12: CRE008 Feedback, Wikipedia und freie Klänge
+Rank 189 with 00:11:51: CRE001 Chaosradio Express stellt sich vor
