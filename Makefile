@@ -6,8 +6,8 @@ all: render interlocutor-hitlist.txt duration-hitlist.txt
 CRE-Graph.dot: CRE_info_hash
 	./spider
 
-more_than_one_interlocutor.dot: CRE_info_hash
-	./more_than_one_interlocutor
+more-than-one-interlocutor.dot: CRE_info_hash
+	./more-than-one-interlocutor
 
 interlocutor-hitlist.txt: CRE_info_hash
 	./interlocutor-hitlist > $@
@@ -17,11 +17,11 @@ duration-hitlist.txt: CRE_info_hash
 
 render: render-png render-pdf
 
-render-png: CRE-Graph.png more_than_one_interlocutor.png 
+render-png: CRE-Graph.png more-than-one-interlocutor.png 
 
-render-pdf: CRE-Graph.pdf more_than_one_interlocutor.pdf
+render-pdf: CRE-Graph.pdf more-than-one-interlocutor.pdf
 
-render-svg: CRE-Graph.svg more_than_one_interlocutor.svg
+render-svg: CRE-Graph.svg more-than-one-interlocutor.svg
 
 CRE_info_hash:
 	./gen_CRE_info_hash
@@ -36,13 +36,13 @@ CRE-Graph.svg: CRE-Graph.dot
 CRE-Graph.pdf: CRE-Graph.dot
 	dot -Tpdf -o $@ $^ $(DotFlags)
 
-more_than_one_interlocutor.png: more_than_one_interlocutor.dot
+more-than-one-interlocutor.png: more-than-one-interlocutor.dot
 	dot -Tpng -o $@ $^ $(DotFlags)
 
-more_than_one_interlocutor.svg: more_than_one_interlocutor.dot
+more-than-one-interlocutor.svg: more-than-one-interlocutor.dot
 	dot -Tsvg -o $@ $^ $(DotFlags)
 
-more_than_one_interlocutor.pdf: more_than_one_interlocutor.dot
+more-than-one-interlocutor.pdf: more-than-one-interlocutor.dot
 	dot -Tpdf -o $@ $^ $(DotFlags)
 
 clean:

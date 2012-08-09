@@ -27,5 +27,5 @@ for my $key (keys %CRE) {
 #$interlocutor_max_length = 15;
 for my $interlocutor (sort { $interlocutor_count{$b} <=> $interlocutor_count{$a} } keys %interlocutor_count) {
 	printf "%${interlocutor_max_length}s (%d): ", $interlocutor, $interlocutor_count{$interlocutor};
-	say "@{$interlocutor{$interlocutor}}";
+	say join " ", sort { $a cmp $b } @{$interlocutor{$interlocutor}};
 }

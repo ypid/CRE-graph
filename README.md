@@ -17,9 +17,9 @@ http://github.com/ypid/CRE-graph/tree/using-rssfeed
 	http://ypid.wordpress.com/2012/04/02/welche-cre-folgen-beziehen-sich-auf-andere/
 
 I also added some statistics:
-* Sorted after duration: https://github.com/ypid/CRE-graph/blob/master/duration-hitlist
+* Sorted after duration: https://github.com/ypid/CRE-graph/blob/master/duration-hitlist.txt
 * Sorted after interlocutor: https://github.com/ypid/CRE-graph/blob/master/interlocutor-hitlist.txt
-* Sorted after interlocutor (Graph): https://raw.github.com/ypid/CRE-graph/master/more\_than\_one\_interlocutor.png
+* Sorted after interlocutor (Graph): https://raw.github.com/ypid/CRE-graph/master/more-than-one-interlocutor.png
 
 # Dependencies
 * Perl 5.10 and the module WWW::Mechanize Storable HTML::Parser LWP::Simple

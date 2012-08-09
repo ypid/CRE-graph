@@ -9,7 +9,7 @@ my $Storable_file = 'CRE_info_hash';
 
 my %CRE = %{retrieve $Storable_file};
 
-open my $dot_fh, '>', 'more_than_one_interlocutor.dot';
+open my $dot_fh, '>', 'more-than-one-interlocutor.dot';
 say $dot_fh "digraph G {\n\toverlap = false\n";
 
 my %interlocutor;

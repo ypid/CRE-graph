@@ -77,7 +77,7 @@ Rank 076 with 01:57:04: CRE066 Politik für Anfänger
 Rank 077 with 01:56:46: CRE185 Hedonistische Internationale
 Rank 078 with 01:56:22: CRE112 Roboterfussball
 Rank 079 with 01:55:14: CRE096 Audiovisuelle Kunst, VJ-Kultur und Live Cinema
-Rank 080 with 01:55:13: CRE036 Grafikkarten und 3D	CRE061 Medienformate und Codecs
+Rank 080 with 01:55:13: CRE061 Medienformate und Codecs	CRE036 Grafikkarten und 3D
 Rank 081 with 01:55:07: CRE167 node.js
 Rank 082 with 01:54:41: CRE184 Bundeswehr
 Rank 083 with 01:53:02: CRE094 Conversational Design
