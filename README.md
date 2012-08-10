@@ -7,7 +7,7 @@ After this the program dot can do it's job and render some nice graphs.
 
 Call make to generate a graph from the current data.
 
-There is also a implementation that uses the XML podcast feed.
+There is also an implementation that uses the XML podcast feed.
 http://github.com/ypid/CRE-graph/tree/using-rssfeed
 
 # Resoult
