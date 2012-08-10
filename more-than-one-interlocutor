@@ -1,9 +1,10 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 use strict;
+use warnings;
 use feature qw(say);
 use autodie;
 use utf8;
-binmode(STDOUT, ":utf8");
+binmode(STDOUT, ':encoding(UTF-8)');
 use Storable;
 my $Storable_file = 'CRE_info_hash';
 
@@ -17,8 +18,8 @@ my %interlocutor_count;
 for my $key (keys %CRE) {
 	my $interlocutor = $CRE{$key}{'interlocutor'};
 	next unless defined $interlocutor;
-	$interlocutor =~ s/"/\\"/g;
-	my @interlocutors = split /, /, $interlocutor;
+	$interlocutor =~ s/"/\\"/xmsg;
+	my @interlocutors = split /, /xms, $interlocutor;
 	next if @interlocutors == 1; ## Boring
 	for (@interlocutors) {
 		push @{$interlocutor{$_}}, $key;
@@ -34,3 +35,4 @@ for my $interlocutor (sort { $interlocutor_count{$b} <=> $interlocutor_count{$a}
 }
 
 say $dot_fh '}';
+close $dot_fh;

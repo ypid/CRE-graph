@@ -1,9 +1,10 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 use strict;
+use warnings;
 use feature qw(say);
 use autodie;
 use utf8;
-binmode(STDOUT, ":utf8");
+binmode(STDOUT, ':encoding(UTF-8)');
 use Storable;
 my $Storable_file = 'CRE_info_hash';
 
@@ -14,7 +15,7 @@ my $interlocutor_max_length = 0;
 for my $key (keys %CRE) {
 	my $interlocutor = $CRE{$key}{'interlocutor'};
 	next unless defined $interlocutor;
-	my @interlocutors = split /, /, $interlocutor;
+	my @interlocutors = split /,\s/xms, $interlocutor;
 	for (@interlocutors) {
 		push @{$interlocutor{$_}}, $key;
 		$interlocutor_count{$_}++;
@@ -27,5 +28,5 @@ for my $key (keys %CRE) {
 #$interlocutor_max_length = 15;
 for my $interlocutor (sort { $interlocutor_count{$b} <=> $interlocutor_count{$a} } keys %interlocutor_count) {
 	printf "%${interlocutor_max_length}s (%d): ", $interlocutor, $interlocutor_count{$interlocutor};
-	say join " ", sort { $a cmp $b } @{$interlocutor{$interlocutor}};
+	say join q{ }, sort { $a cmp $b } @{$interlocutor{$interlocutor}};
 }
