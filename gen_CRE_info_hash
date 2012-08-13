@@ -5,100 +5,130 @@ use warnings;
 use autodie;
 use utf8;
 use open qw(:std :utf8);
-binmode(STDOUT, ':encoding(UTF-8)');
+binmode STDOUT, ':encoding(UTF-8)';
 use feature qw(say);
 use LWP::Simple qw(get getstore);
-use HTML::Parser 3.00 ();
-use Storable;
+use HTML::Parser ();
+use Storable qw(store);
 my $Storable_file = 'CRE_info_hash';
-#use Data::Dumper;
 
 my $root_html_url = 'http://cre.fm/archiv';
 
-my (%inside, $tmp_date, %CRE, $c_CRE);
+my ( %inside, $tmp_date, %CRE, $c_CRE );
+## $c_CRE: Contains the current key for %CRE (for example CRE042)
 ## %CRE: The CRE_info_hash
-## $c_CRE: Contains the current key for %CRE (for example CRE155)
+## 'CRE047' => {
+##     'interlocutor' => 'Starbug, Constanze Kurz',
+##     'subtitle' => 'Ein detaillierter Blick auf die Technik des neuen Deutschen Reisepasses',
+##     'date' => '2007-10-09',
+##     'url' => 'http://cre.fm/cre047',
+##     'duration' => '02:18:19',
+##     'title' => 'CRE047 Der Elektronische Reisepass'
+## },
+
 sub start {
-	my $tag = shift;
-	my $num = shift;
-	my $attr = shift;
-	if ($tag eq 'tr' and exists $attr->{'class'} and $attr->{'class'} eq 'podcast_archive_element') {
-		end('tr.PAE', '+1');
-	} elsif ($tag eq 'td' and $inside{'tr.PAE'} and exists $attr->{'class'} and $attr->{'class'} eq 'date') {
-		end('tr.PAE.date', '+1');
-	} elsif ($tag eq 'span' and $inside{'tr.PAE.date'} and exists $attr->{'class'} and $attr->{'class'} eq 'release_date') {
-		end('tr.PAE.date.span', '+1');
-	} elsif ($tag eq 'td' and $inside{'tr.PAE'} and exists $attr->{'class'} and $attr->{'class'} eq 'title') {
-		end('tr.PAE.title', '+1');
-	} elsif ($tag eq 'a' and $inside{'tr.PAE.title'} and exists $attr->{'href'}) {
-		my $url = $attr->{'href'};
-		die "Not the URL I expected" unless $url =~ /(cre\d{3})\z/xms;
-		$c_CRE = uc $1;
-		$CRE{$c_CRE}{'url'} = $url;
-		$CRE{$c_CRE}{'date'} = $tmp_date;
-		end('tr.PAE.title.a', '+1');
-	} elsif ($tag eq 'strong' and $inside{'tr.PAE.title.a'}) {
-		end('tr.PAE.title.a.Title', '+1');
-	} elsif ($tag eq 'em' and $inside{'tr.PAE.title'}) {
-		end('tr.PAE.title.em', '+1');
-	} elsif ($tag eq 'strong' and $inside{'tr.PAE.title'}) {
-		end('tr.PAE.title.interlocutor', '+1');
-	} elsif ($tag eq 'td' and $inside{'tr.PAE'} and exists $attr->{'class'} and $attr->{'class'} eq 'duration') {
-		end('tr.PAE.duration', '+1');
-	}
-	end($tag, $num);
-	return;
-}
+    my $tag  = shift;
+    my $num  = shift;
+    my $attr = shift;
+    if ( $tag eq 'tr' and exists $attr->{'class'} and $attr->{'class'} eq 'podcast_archive_element' ) {
+        end( 'tr.PAE', '+1' );
+    }
+    elsif ( $tag eq 'td' and $inside{'tr.PAE'} and exists $attr->{'class'} and $attr->{'class'} eq 'date' ) {
+        end( 'tr.PAE.date', '+1' );
+    }
+    elsif ( $tag eq 'span'
+        and $inside{'tr.PAE.date'}
+        and exists $attr->{'class'}
+        and $attr->{'class'} eq 'release_date' )
+    {
+        end( 'tr.PAE.date.span', '+1' );
+    }
+    elsif ( $tag eq 'td' and $inside{'tr.PAE'} and exists $attr->{'class'} and $attr->{'class'} eq 'title' ) {
+        end( 'tr.PAE.title', '+1' );
+    }
+    elsif ( $tag eq 'a' and $inside{'tr.PAE.title'} and exists $attr->{'href'} ) {
+        my $url = $attr->{'href'};
+        die "Not the URL I expected" unless $url =~ /(cre\d{3})\z/xms;
+        $c_CRE               = uc $1;
+        $CRE{$c_CRE}{'url'}  = $url;
+        $CRE{$c_CRE}{'date'} = $tmp_date;
+        end( 'tr.PAE.title.a', '+1' );
+    }
+    elsif ( $tag eq 'strong' and $inside{'tr.PAE.title.a'} ) {
+        end( 'tr.PAE.title.a.Title', '+1' );
+    }
+    elsif ( $tag eq 'em' and $inside{'tr.PAE.title'} ) {
+        end( 'tr.PAE.title.em', '+1' );
+    }
+    elsif ( $tag eq 'strong' and $inside{'tr.PAE.title'} ) {
+        end( 'tr.PAE.title.interlocutor', '+1' );
+    }
+    elsif ( $tag eq 'td' and $inside{'tr.PAE'} and exists $attr->{'class'} and $attr->{'class'} eq 'duration' ) {
+        end( 'tr.PAE.duration', '+1' );
+    }
+    end( $tag, $num );
+    return;
+} ## end sub start
 
 sub end { ## no critic (Subroutines::RequireArgUnpacking)
-	#my($tag, $num) = @_;
-	$inside{$_[0]} += $_[1];
-	return;
+    #my($tag, $num) = @_;
+    $inside{ $_[0] } += $_[1];
+    return;
 }
 
 sub text {
-	my ($dtext) = @_;
-	if ($inside{'tr.PAE.date.span'}) {
-		die "Not the date I expected" unless $dtext =~ /(\d{2})\.(\d{2})\.(\d{4})/xms;
-		## converts the date TT.MM.YYYY to ISO 8601
-		$tmp_date = "$3-$2-$1";
-		end('tr.PAE.date.span', '-1');
-		end('tr.PAE.date', '-1');
-	} elsif ($inside{'tr.PAE.title.a.Title'}) {
-		$CRE{$c_CRE}{'title'} = $dtext;
-		end('tr.PAE.title.a.Title', '-1');
-		end('tr.PAE.title.a', '-1');
-	} elsif ($inside{'tr.PAE.title.em'}) {
-		$CRE{$c_CRE}{'subtitle'} = $dtext;
-		end('tr.PAE.title.em', '-1');
-	} elsif ($inside{'tr.PAE.title.interlocutor'} and $dtext ne 'Gesprächspartner:') {
-		$dtext =~ s/'/"/xmsg;
-		$dtext =~ /\s(.*\w)/xms; ## captures the interlocutors without the crap at the end of the string
-		## $1 can be undef
-		$CRE{$c_CRE}{'interlocutor'} = $1; ## no critic (RegularExpressions::ProhibitCaptureWithoutTest)
-		end('tr.PAE.title.interlocutor', '-1');
-		end('tr.PAE.title', '-1');
-	} elsif ($inside{'tr.PAE.duration'}) {
-		die "Not the duration I expected" unless $dtext =~ /(\d{2}:\d{2}:\d{2})/xms;
-		$CRE{$c_CRE}{'duration'} = $1;
-		end('tr.PAE.duration', '-1');
-		end('tr.PAE', '-1');
-	}
-	return;
-}
-my $p = HTML::Parser->new(api_version => 3,
-		  handlers    => [start => [\&start, "tagname, '+1', attr"],
-				  end   => [\&end, "tagname, '-1'"],
-				  text  => [\&text, "dtext"],
-				 ],
-		  marked_sections => 1,
-	);
+    my ($dtext) = @_;
+    if ( $inside{'tr.PAE.date.span'} ) {
+        die "Not the date I expected" unless $dtext =~ /(\d{2})\.(\d{2})\.(\d{4})/xms;
+        ## converts the date TT.MM.YYYY to ISO 8601
+        $tmp_date = "$3-$2-$1";
+        end( 'tr.PAE.date.span', '-1' );
+        end( 'tr.PAE.date',      '-1' );
+    }
+    elsif ( $inside{'tr.PAE.title.a.Title'} ) {
+        $CRE{$c_CRE}{'title'} = $dtext;
+        end( 'tr.PAE.title.a.Title', '-1' );
+        end( 'tr.PAE.title.a',       '-1' );
+    }
+    elsif ( $inside{'tr.PAE.title.em'} ) {
+        $CRE{$c_CRE}{'subtitle'} = $dtext;
+        end( 'tr.PAE.title.em', '-1' );
+    }
+    elsif ( $inside{'tr.PAE.title.interlocutor'} and $dtext ne 'Gesprächspartner:' ) {
+        $dtext =~ s/'/"/xmsg;
+        $dtext =~ /\s(.*\w)/xms; ## captures the interlocutors without the crap at the end of the string
+        ## $1 can be undef
+        $CRE{$c_CRE}{'interlocutor'} = $1; ## no critic (RegularExpressions::ProhibitCaptureWithoutTest)
+        end( 'tr.PAE.title.interlocutor', '-1' );
+        end( 'tr.PAE.title',              '-1' );
+    }
+    elsif ( $inside{'tr.PAE.duration'} ) {
+        die "Not the duration I expected" unless $dtext =~ /(\d{2}:\d{2}:\d{2})/xms;
+        $CRE{$c_CRE}{'duration'} = $1;
+        end( 'tr.PAE.duration', '-1' );
+        end( 'tr.PAE',          '-1' );
+    }
+    return;
+} ## end sub text
+
+
+my $p = HTML::Parser->new(
+    api_version => 3,
+    handlers    => [
+        start => [ \&start, "tagname, '+1', attr" ],
+        end   => [ \&end,   "tagname, '-1'" ],
+        text  => [ \&text,  "dtext" ],
+    ],
+    marked_sections => 1,
+);
 my $root_html_file = 'archiv.html';
+
 #getstore($root_html_url, $root_html_file);
 #open(my $FH_root_html, '<:utf8', $root_html_file);
 #$p->parse_file($FH_root_html);
 my $root_html_string = get($root_html_url);
 $p->parse($root_html_string);
-#print Dumper(\%CRE);
 
-store(\%CRE, $Storable_file);
+#use Data::Dumper;print Dumper(\%CRE);
+
+store( \%CRE, $Storable_file );

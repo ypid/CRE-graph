@@ -4,29 +4,29 @@ use warnings;
 use feature qw(say);
 use autodie;
 use utf8;
-binmode(STDOUT, ':encoding(UTF-8)');
+binmode STDOUT, ':encoding(UTF-8)';
 use Storable;
 my $Storable_file = 'CRE_info_hash';
 
-my %CRE = %{retrieve $Storable_file};
+my %CRE = %{ retrieve $Storable_file };
 
-my(%interlocutor, %interlocutor_count);
+my ( %interlocutor, %interlocutor_count );
 my $interlocutor_max_length = 0;
-for my $key (keys %CRE) {
-	my $interlocutor = $CRE{$key}{'interlocutor'};
-	next unless defined $interlocutor;
-	my @interlocutors = split /,\s/xms, $interlocutor;
-	for (@interlocutors) {
-		push @{$interlocutor{$_}}, $key;
-		$interlocutor_count{$_}++;
-		if ($interlocutor_max_length < length($_)) {
-			$interlocutor_max_length = length($_);
-		}
-	}
+for my $key ( keys %CRE ) {
+    my $interlocutor = $CRE{$key}{'interlocutor'};
+    next unless defined $interlocutor;
+    my @interlocutors = split /,\s/xms, $interlocutor;
+    for (@interlocutors) {
+        push @{ $interlocutor{$_} }, $key;
+        $interlocutor_count{$_}++;
+        if ( $interlocutor_max_length < length($_) ) {
+            $interlocutor_max_length = length($_);
+        }
+    }
 }
 
 #$interlocutor_max_length = 15;
-for my $interlocutor (sort { $interlocutor_count{$b} <=> $interlocutor_count{$a} } keys %interlocutor_count) {
-	printf "%${interlocutor_max_length}s (%d): ", $interlocutor, $interlocutor_count{$interlocutor};
-	say join q{ }, sort { $a cmp $b } @{$interlocutor{$interlocutor}};
+for my $interlocutor ( sort { $interlocutor_count{$b} <=> $interlocutor_count{$a} } keys %interlocutor_count ) {
+    printf "%${interlocutor_max_length}s (%d): ", $interlocutor, $interlocutor_count{$interlocutor};
+    say join q{ }, sort { $a cmp $b } @{ $interlocutor{$interlocutor} };
 }
