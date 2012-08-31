@@ -1,3 +1,6 @@
+Total duration: 13 days and 23 hours
+Average duration per episode: 1 hour and 44 minutes
+
 Rank 001 with 03:13:52: CRE194 Bier
 Rank 002 with 03:07:20: CRE191 Internet im Festnetz
 Rank 003 with 03:06:22: CRE160 DDR
@@ -187,4 +190,3 @@ Rank 186 with 00:27:21: CRE021 Website Relaunch und Feedback
 Rank 187 with 00:26:12: CRE004 Klangwellen aller Art
 Rank 188 with 00:23:12: CRE008 Feedback, Wikipedia und freie Klänge
 Rank 189 with 00:11:51: CRE001 Chaosradio Express stellt sich vor
-Total duration: 13 days and 16 hours
