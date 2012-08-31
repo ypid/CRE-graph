@@ -23,6 +23,6 @@ I also added some statistics:
 * Sorted after interlocutor (Graph): [more-than-one-interlocutor.png](https://raw.github.com/ypid/CRE-graph/master/more-than-one-interlocutor.png)
 
 # Dependencies
-* Perl 5.10 and the module WWW::Mechanize Storable HTML::Parser LWP::Simple
+* Perl 5.10 and the module WWW::Mechanize Storable HTML::Parser LWP::Simple Time::Duration
 * graphviz
 * make

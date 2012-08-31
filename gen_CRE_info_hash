@@ -15,7 +15,7 @@ my $Storable_file = 'CRE_info_hash';
 my $root_html_url = 'http://cre.fm/archiv';
 
 my ( %inside, $tmp_date, %CRE, $c_CRE );
-## $c_CRE: Contains the current key for %CRE (for example CRE042)
+## $c_CRE: Contains the current key for %CRE (for example CRE047)
 ## %CRE: The CRE_info_hash
 ## 'CRE047' => {
 ##     'interlocutor' => 'Starbug, Constanze Kurz',

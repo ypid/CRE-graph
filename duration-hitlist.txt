@@ -122,7 +122,7 @@ Rank 121 with 01:33:51: CRE043 Wikipedia für Fortgeschrittene
 Rank 122 with 01:33:40: CRE081 Neusprech im Schnüffelstaat
 Rank 123 with 01:32:51: CRE103 Drupal
 Rank 124 with 01:32:11: CRE181 Aram Bartholl
-Rank 125 with 01:32:08: CRE049 Das ZFS Dateisytem
+Rank 125 with 01:32:08: CRE049 Das ZFS Dateisystem
 Rank 126 with 01:31:48: CRE189 Chaos macht Schule
 Rank 127 with 01:30:40: CRE110 Next Generation Networks
 Rank 128 with 01:30:02: CRE062 Monochrom	CRE075 Energiesparhäuser
@@ -187,3 +187,4 @@ Rank 186 with 00:27:21: CRE021 Website Relaunch und Feedback
 Rank 187 with 00:26:12: CRE004 Klangwellen aller Art
 Rank 188 with 00:23:12: CRE008 Feedback, Wikipedia und freie Klänge
 Rank 189 with 00:11:51: CRE001 Chaosradio Express stellt sich vor
+Total duration: 13 days and 16 hours

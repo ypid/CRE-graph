@@ -6,6 +6,7 @@ use autodie;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 use Storable;
+use Time::Duration;
 my $Storable_file = 'CRE_info_hash';
 
 my %CRE = %{ retrieve $Storable_file};
@@ -18,9 +19,13 @@ for my $key ( keys %CRE ) {
 }
 
 my $count = 0;
+my $total_seconds = 0;
 for my $duration ( sort { $b <=> $a } keys %duration ) {
     $count++;
     ( my $duration_human_readable = $duration ) =~ s/(\d{2})(\d{2})(\d{2})/$1:$2:$3/xms;
+    ## $1: hours  $2: minutes  $3: seconds
+    $total_seconds += $1 * 3600 + $2 * 60 + $3;
     my $CRE_eps = join "\t", map { $CRE{$_}{'title'} } @{ $duration{$duration} };
     printf "Rank %03d with %s: %s\n", $count, $duration_human_readable, $CRE_eps;
 }
+say "Total duration: " . duration($total_seconds);
