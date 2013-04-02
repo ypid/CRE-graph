@@ -17,7 +17,7 @@ duration-hitlist.txt: CRE_info_hash
 
 render: render-png render-pdf
 
-render-png: CRE-Graph.png more-than-one-interlocutor.png 
+render-png: CRE-Graph.png more-than-one-interlocutor.png
 
 render-pdf: CRE-Graph.pdf more-than-one-interlocutor.pdf
 

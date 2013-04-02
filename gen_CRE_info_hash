@@ -11,6 +11,7 @@ use LWP::Simple qw(get getstore);
 use HTML::Parser ();
 use Storable qw(store);
 my $Storable_file = 'CRE_info_hash';
+my $DEBUG = 1;
 
 my $root_html_url = 'http://cre.fm/archiv';
 
@@ -49,6 +50,9 @@ sub start {
         my $url = $attr->{'href'};
         die "Not the URL I expected" unless $url =~ /(cre\d{3})\z/xms;
         $c_CRE               = uc $1;
+        if ($DEBUG) {
+            say "Parsing: $url, $tmp_date";
+        }
         $CRE{$c_CRE}{'url'}  = $url;
         $CRE{$c_CRE}{'date'} = $tmp_date;
         $inside{'tr.PAE.title.a'} += 1;
@@ -74,6 +78,9 @@ sub text {
         die "Not the date I expected" unless $dtext =~ /(\d{2})\.(\d{2})\.(\d{4})/xms;
         ## converts the date TT.MM.YYYY to ISO 8601
         $tmp_date = "$3-$2-$1";
+        if ($DEBUG) {
+            say "Date: $tmp_date";
+        }
         $inside{'tr.PAE.date.span'} -= 1;
         $inside{'tr.PAE.date'}      -= 1;
     }
@@ -91,11 +98,17 @@ sub text {
         $dtext =~ /\s(.*\w)/xms; ## captures the interlocutors without the crap at the end of the string
         ## $1 can be undef
         $CRE{$c_CRE}{'interlocutor'} = $1; ## no critic (RegularExpressions::ProhibitCaptureWithoutTest)
+        if ($DEBUG and $1) {
+            say "Gesprächspartner: $1";
+        }
         $inside{'tr.PAE.title.interlocutor'} -= 1;
         $inside{'tr.PAE.title'}              -= 1;
     }
     elsif ( $inside{'tr.PAE.duration'} ) {
-        die "Not the duration I expected" unless $dtext =~ /(\d{2}:\d{2}:\d{2})/xms;
+        if ($DEBUG) {
+            say "Duration: $dtext";
+        }
+        die "Not the duration I expected: $dtext" unless $dtext =~ /(\d{2}:\d{2}:\d{2})/xms;
         $CRE{$c_CRE}{'duration'} = $1;
         $inside{'tr.PAE.duration'} -= 1;
         $inside{'tr.PAE'}          -= 1;
@@ -124,7 +137,7 @@ for my $key ( keys %inside ) {
         warn "$key (value: $inside{$key}) is different than zero. This indicates a bug in the html page";
     }
 }
-#use Data::Dumper;print Dumper(\%CRE);
+use Data::Dumper;print Dumper(\%CRE);
 #use Data::Dumper;print Dumper(\%inside);
 
 store( \%CRE, $Storable_file );
