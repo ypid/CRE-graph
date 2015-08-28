@@ -1,16 +1,17 @@
 # About
 
 This project shows the references between episodes of the podcast [CRE](http://cre.fm/) in a graph.
-For this purpose I created two Perl-Scripts called gen\_CRE\_info\_hash and spider to parse all required html pages.
-The spider exports this information using the description language DOT.
-After this the program dot can do it's job and render some nice graphs.
+For this purpose I created two Perl-Scripts called `gen_CRE_info_hash` and `spider` to parse all required html pages.
+The `spider` exports this information using the description language DOT.
+After this the program `dot` can do it's job and render some nice graphs.
 
 Call make to generate a graph from the current data.
 
 There is also an implementation that uses the XML podcast feed:
 [using-rssfeed](http://github.com/ypid/CRE-graph/tree/using-rssfeed)
 
-# Resoult
+## Resoult
+
 * [CRE-Graph.pdf](https://github.com/ypid/CRE-graph/raw/master/CRE-Graph.pdf)
 * [CRE-Graph.png](https://github.com/ypid/CRE-graph/raw/master/CRE-Graph.png)
 * A small cutting and a short introduction is on my blog (in German):
@@ -22,7 +23,8 @@ I also added some statistics:
 * Sorted after interlocutor: [interlocutor-hitlist.txt](https://github.com/ypid/CRE-graph/blob/master/interlocutor-hitlist.txt)
 * Sorted after interlocutor (Graph): [more-than-one-interlocutor.png](https://raw.github.com/ypid/CRE-graph/master/more-than-one-interlocutor.png)
 
-# Dependencies
+## Dependencies
+
 * Perl 5.10 and the module WWW::Mechanize Storable HTML::Parser LWP::Simple Time::Duration
 * graphviz
 * make
